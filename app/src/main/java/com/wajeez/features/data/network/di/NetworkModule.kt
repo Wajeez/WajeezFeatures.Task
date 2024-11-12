@@ -16,36 +16,26 @@
 
 package com.wajeez.features.data.local.di
 
-import android.content.Context
-import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import com.wajeez.features.data.local.database.AppDatabase
-import com.wajeez.features.data.local.database.DataItemTypeDao
-import dagger.Binds
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Singleton
+
+private const val BASE_URL ="https://6731acd17aaf2a9aff118151.mockapi.io/api/v1/"
 
 @Module
 @InstallIn(SingletonComponent::class)
-class DatabaseModule {
+class NetworkModule {
+
 
     @Provides
-    fun provideDataItemTypeDao(appDatabase: AppDatabase): DataItemTypeDao {
-        return appDatabase.dataItemTypeDao()
+    fun provideRetrofit(): Retrofit {
+        return Retrofit.Builder().baseUrl(BASE_URL)
+            .addConverterFactory(
+                GsonConverterFactory.create()
+            ).build()
     }
 
-    @Provides
-    @Singleton
-    fun provideAppDatabase(@ApplicationContext appContext: Context): AppDatabase {
-        return Room.databaseBuilder(
-            appContext,
-            AppDatabase::class.java,
-            "DataItemType"
-        ).build()
-    }
 }

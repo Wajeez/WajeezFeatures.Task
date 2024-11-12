@@ -24,6 +24,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import com.wajeez.features.data.DataItemTypeRepository
 import com.wajeez.features.data.DefaultDataItemTypeRepository
+import com.wajeez.features.data.local.database.AppDatabase
+import com.wajeez.features.data.local.database.DataItemTypeDao
+import dagger.Provides
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
 import javax.inject.Singleton
 

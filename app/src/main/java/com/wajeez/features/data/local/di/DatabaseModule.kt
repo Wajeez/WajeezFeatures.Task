@@ -25,12 +25,27 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import com.wajeez.features.data.local.database.AppDatabase
 import com.wajeez.features.data.local.database.DataItemTypeDao
+import dagger.Binds
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
+private const val BASE_URL ="https://6731acd17aaf2a9aff118151.mockapi.io/api/v1/"
 
 @Module
 @InstallIn(SingletonComponent::class)
 class DatabaseModule {
+
+
+    @Provides
+
+    fun provideRetrofit(): Retrofit {
+        return Retrofit.Builder().baseUrl(BASE_URL)
+            .addConverterFactory(
+                GsonConverterFactory.create()
+            ).build()
+    }
+
     @Provides
     fun provideDataItemTypeDao(appDatabase: AppDatabase): DataItemTypeDao {
         return appDatabase.dataItemTypeDao()

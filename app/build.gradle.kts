@@ -126,4 +126,9 @@ dependencies {
     androidTestImplementation(libs.androidx.test.core)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.test.runner)
+
+    // retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    // gson converter
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 }
